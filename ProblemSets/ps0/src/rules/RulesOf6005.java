@@ -35,10 +35,15 @@ public class RulesOf6005 {
     public static boolean mayUseCodeInAssignment(boolean writtenByYourself,
             boolean availableToOthers, boolean writtenAsCourseWork,
             boolean citingYourSource, boolean implementationRequired) {
-        
-        // TODO: Fill in this method, then remove the exception
-        
-        throw new RuntimeException("implement me!");
+
+        boolean res = false;
+        if (writtenByYourself) {
+            res = true;
+        }
+//        } else if (!writtenByYourself && !citingYourSource) {
+//            return false;
+//        }
+        return res;
     }
     
     /**
@@ -49,7 +54,7 @@ public class RulesOf6005 {
      * @param args unused
      */
     public static void main(String[] args) {
-        System.out.println("You may certainly use code you wrote yourself: " +
-            RulesOf6005.mayUseCodeInAssignment(true, false, true, true, true));
+        System.out.println("You may certainly use code you wrote yourself: "
+                + RulesOf6005.mayUseCodeInAssignment(true, false, true, true, true));
     }
 }
