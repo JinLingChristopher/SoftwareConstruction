@@ -39,6 +39,7 @@ public class DrawableTurtle implements Turtle {
         this.actionList = new ArrayList<>();
     }
 
+    @Override
     public void forward(int steps) {
         double newX = currentPosition.x() + Math.cos(Math.toRadians(DEGREES_TO_VERTICAL - currentHeading)) * (double)steps;
         double newY = currentPosition.y() + Math.sin(Math.toRadians(DEGREES_TO_VERTICAL - currentHeading)) * (double)steps;
@@ -50,12 +51,14 @@ public class DrawableTurtle implements Turtle {
         this.actionList.add(new Action(ActionType.FORWARD, "forward " + steps + " steps", lineSeg));
     }
 
+    @Override
     public void turn(double degrees) {
         degrees = (degrees % CIRCLE_DEGREES + CIRCLE_DEGREES) % CIRCLE_DEGREES;
         this.currentHeading = (this.currentHeading + degrees) % CIRCLE_DEGREES;
         this.actionList.add(new Action(ActionType.TURN, "turn " + degrees + " degrees", null));
     }
 
+    @Override
     public void color(PenColor color) {
         this.currentColor = color;
         this.actionList.add(new Action(ActionType.COLOR, "change to " + color.toString().toLowerCase(), null));
@@ -64,6 +67,8 @@ public class DrawableTurtle implements Turtle {
     /**
      * Draw the image created by this turtle in a window on the screen.
      */
+
+    @Override
     public void draw() {
         SwingUtilities.invokeLater(() -> {
             (new TurtleGUI(actionList, CANVAS_WIDTH, CANVAS_HEIGHT)).setVisible(true);
