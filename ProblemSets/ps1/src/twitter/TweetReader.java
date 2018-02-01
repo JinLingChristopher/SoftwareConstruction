@@ -44,7 +44,7 @@ public class TweetReader {
         return readTweets(new InputStreamReader(url.openStream()));
     }
     
-    /*
+    /**
      * Read a list of tweets from a stream.
      * 
      * @return a list of tweets parsed out of the stream.
@@ -60,7 +60,7 @@ public class TweetReader {
         return tweetList;
     }
     
-    /*
+    /**
      * Crawl recursively through the JSON tree representing a single tweet.
      * 
      * @return a map that maps key paths (like "id" and "user.screen_name") to values.
@@ -82,8 +82,9 @@ public class TweetReader {
             break;
         case ARRAY:
             JsonArray array = (JsonArray) tree;
-            for (JsonValue val : array)
+            for (JsonValue val : array) {
                 tweetMap.putAll(constructTweetMap(val, null));
+            }
             break;
         case STRING:
             JsonString st = (JsonString) tree;
